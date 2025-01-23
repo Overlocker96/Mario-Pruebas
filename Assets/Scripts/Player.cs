@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     SpriteRenderer m_sr;
     Rigidbody2D m_rb;
 
+    private bool jumping;
+
     void Start()
     {
         m_animator = gameObject.GetComponent<Animator>();
@@ -41,11 +43,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size * 0.75f), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size * 0.75f), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
         if (Input.GetKeyDown(KeyCode.Space) && (hit1.collider || hit2.collider))
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight);
         }
+        if (m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1)
+        {
+            jumping = true;
+        }
+        else
+        {
+            jumping = false;
+        }
+        m_animator.SetBool("Jumping", jumping);
     }
 }
