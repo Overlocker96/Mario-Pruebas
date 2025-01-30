@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     Animator m_animator;
     SpriteRenderer m_sr;
     Rigidbody2D m_rb;
+    GameObject m_go;
+    Collider2D m_c2D;
 
     private bool jumping;
 
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour
         m_animator = gameObject.GetComponent<Animator>();
         m_sr = gameObject.GetComponent<SpriteRenderer>();
         m_rb = gameObject.GetComponent<Rigidbody2D>();
+        m_go = GameObject.Find("Mario");
+        m_c2D = gameObject.GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
@@ -31,11 +35,13 @@ public class Player : MonoBehaviour
 
         if (horizontal < 0)
         {
-            m_sr.flipX = true;
+            //m_sr.flipX = true;
+            m_go.transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            m_sr.flipX = false;
+            //m_sr.flipX = false;
+            m_go.transform.localScale = new Vector3(1, 1, 1);
         }
 
         m_rb.velocity = new Vector2(horizontal * speed, m_rb.velocity.y);
@@ -43,8 +49,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size * 0.75f), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size * 0.75f), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
         if (Input.GetKeyDown(KeyCode.Space) && (hit1.collider || hit2.collider))
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight);
