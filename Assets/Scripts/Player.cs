@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     Collider2D m_c2D;
 
     private bool jumping;
+    private bool maxHeightReached;
+    private float positionOld;
 
     void Start()
     {
@@ -49,12 +51,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground"));
+
         if (Input.GetKeyDown(KeyCode.Space) && (hit1.collider || hit2.collider))
         {
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight);
+            maxHeightReached = false;
+            positionOld = m_rb.position.y;
+            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight/4);
         }
+        else if (m_rb.position.y < positionOld + 3 && Input.GetKey(KeyCode.Space) == true && maxHeightReached == false)
+        {
+            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight/2);
+        }
+        else if (m_rb.position.y > positionOld + 3 || Input.GetKeyDown(KeyCode.Space) == false)
+        {
+            m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
+            maxHeightReached = true;
+        }
+
         if (m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1)
         {
             jumping = true;
@@ -63,6 +78,7 @@ public class Player : MonoBehaviour
         {
             jumping = false;
         }
+
         m_animator.SetBool("Jumping", jumping);
     }
 }

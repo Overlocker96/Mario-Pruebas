@@ -5,17 +5,20 @@ using UnityEngine;
 public class Goomba : MonoBehaviour
 {
     Rigidbody2D g_rb;
-    Animator g_animator;
+    Rigidbody2D m_rb;
+    Animator g_anim;
+    int deadLayer;
 
     [SerializeField]
     private float velocity;
-
-    bool Moving = false;
+    private bool moving = false;
+    private bool stomped = false;
 
     private void Awake()
     {
         g_rb = gameObject.GetComponent<Rigidbody2D>();
-        g_animator = gameObject.GetComponent<Animator>();
+        g_anim = gameObject.GetComponent<Animator>();
+        deadLayer = LayerMask.NameToLayer("EnemyDead");
     }
 
     private void Start()
@@ -24,30 +27,36 @@ public class Goomba : MonoBehaviour
     }
 
     void FixedUpdate()
-    { 
-        g_animator.SetFloat("Velocity", g_rb.velocity.x);
-        if (Mathf.Abs(g_rb.velocity.x) < 0.05f)
-        {
-            ChangeDirection();
+    {
+        g_anim.SetBool("Moving", moving);
+        stomped = g_anim.GetBool("Stomp");
 
+        if (moving && !stomped)
+        {
+            if (Mathf.Abs(g_rb.velocity.x) < 0.05f)
+            {
+                ChangeDirection();
+            }
+            g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
         }
-        g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
+        else if (stomped)
+        {
+            g_rb.velocity = new Vector2(0, 0);
+            gameObject.layer = deadLayer;
+        }
     }
     private void ChangeDirection()
     {
         this.velocity *= -1;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(g_rb.velocity.x);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        m_rb = collision.gameObject.GetComponent<Rigidbody2D>();
         if (collision.gameObject.name == "Mario")
         {
-            Moving = true;
+            moving = true;
+            m_rb.velocity = new Vector2(0, 10);
         }
     }
 }
