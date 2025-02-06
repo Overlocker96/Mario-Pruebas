@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Enemy
   - EnemyDead
-  - 
+  - Blocks
   - 
   - 
   - 
@@ -46,4 +46,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 2161636165
+    locked: 0
+  - name: Player
+    uniqueID: 3674984229
     locked: 0

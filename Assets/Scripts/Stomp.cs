@@ -18,11 +18,13 @@ public class Stomp : MonoBehaviour
         s_anim.SetBool("Stomp", stomped);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.name == "Mario")
+        if(collider.gameObject.name == "Mario")
         {
+            collider.attachedRigidbody.velocity = new Vector2(0, 10);
             stomped = true;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

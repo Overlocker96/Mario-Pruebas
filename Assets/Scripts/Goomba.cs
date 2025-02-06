@@ -43,6 +43,7 @@ public class Goomba : MonoBehaviour
         {
             g_rb.velocity = new Vector2(0, 0);
             gameObject.layer = deadLayer;
+            Destroy(this.gameObject, 1f);
         }
     }
     private void ChangeDirection()
@@ -56,7 +57,6 @@ public class Goomba : MonoBehaviour
         if (collision.gameObject.name == "Mario")
         {
             moving = true;
-            m_rb.velocity = new Vector2(0, 10);
         }
     }
 }

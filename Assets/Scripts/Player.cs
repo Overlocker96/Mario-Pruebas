@@ -69,6 +69,11 @@ public class Player : MonoBehaviour
             m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
             maxHeightReached = true;
         }
+        else if (Input.GetKeyDown(KeyCode.Space) == true && m_rb.velocity.y <= 0)
+        {
+            m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
+            maxHeightReached = true;
+        }
 
         if (m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1)
         {
