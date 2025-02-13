@@ -8,14 +8,24 @@ public class Block : BlockBase
     public int coins;
     [SerializeField]
     private GameObject Coin;
+    [SerializeField]
+    public bool mushroom;
+    [SerializeField]
+    private GameObject Mushroom;
 
     public void Hit()
     {
         base.Hit();
 
-        if (Coin != null && coins > 0)
+        if (Coin != null && coins > 0 && !mushroom)
         {
             var coinSpawn = Instantiate(Coin, this.transform.position, Quaternion.identity);
+        }
+
+        if (Mushroom != null && mushroom && coins == 0)
+        {
+            var mushSpawn = Instantiate(Mushroom, this.transform.position, Quaternion.identity);
+            mushroom = false;
         }
 
         //Voy restando coins hasta 0

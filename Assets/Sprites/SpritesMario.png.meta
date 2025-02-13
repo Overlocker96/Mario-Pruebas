@@ -713,7 +713,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 396
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -734,7 +734,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 396
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -754,8 +754,8 @@ TextureImporter:
       name: SpritesMario_31
       rect:
         serializedVersion: 2
-        x: 40
-        y: 396
+        x: 38
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -775,8 +775,8 @@ TextureImporter:
       name: SpritesMario_32
       rect:
         serializedVersion: 2
-        x: 60
-        y: 396
+        x: 56
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -796,8 +796,8 @@ TextureImporter:
       name: SpritesMario_33
       rect:
         serializedVersion: 2
-        x: 80
-        y: 396
+        x: 76
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -817,8 +817,8 @@ TextureImporter:
       name: SpritesMario_34
       rect:
         serializedVersion: 2
-        x: 100
-        y: 396
+        x: 96
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -838,8 +838,8 @@ TextureImporter:
       name: SpritesMario_35
       rect:
         serializedVersion: 2
-        x: 120
-        y: 396
+        x: 116
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -859,8 +859,8 @@ TextureImporter:
       name: SpritesMario_36
       rect:
         serializedVersion: 2
-        x: 140
-        y: 396
+        x: 138
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -880,8 +880,8 @@ TextureImporter:
       name: SpritesMario_37
       rect:
         serializedVersion: 2
-        x: 160
-        y: 396
+        x: 156
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -901,8 +901,8 @@ TextureImporter:
       name: SpritesMario_38
       rect:
         serializedVersion: 2
-        x: 180
-        y: 396
+        x: 174
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -922,8 +922,8 @@ TextureImporter:
       name: SpritesMario_39
       rect:
         serializedVersion: 2
-        x: 200
-        y: 396
+        x: 194
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -943,8 +943,8 @@ TextureImporter:
       name: SpritesMario_40
       rect:
         serializedVersion: 2
-        x: 220
-        y: 396
+        x: 210
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -964,8 +964,8 @@ TextureImporter:
       name: SpritesMario_41
       rect:
         serializedVersion: 2
-        x: 240
-        y: 396
+        x: 230
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -985,8 +985,8 @@ TextureImporter:
       name: SpritesMario_42
       rect:
         serializedVersion: 2
-        x: 260
-        y: 396
+        x: 246
+        y: 388
         width: 16
         height: 16
       alignment: 0
@@ -1322,7 +1322,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 380
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1343,7 +1343,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 380
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1363,8 +1363,8 @@ TextureImporter:
       name: SpritesMario_60
       rect:
         serializedVersion: 2
-        x: 40
-        y: 380
+        x: 38
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1384,8 +1384,8 @@ TextureImporter:
       name: SpritesMario_61
       rect:
         serializedVersion: 2
-        x: 60
-        y: 380
+        x: 56
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1405,8 +1405,8 @@ TextureImporter:
       name: SpritesMario_62
       rect:
         serializedVersion: 2
-        x: 80
-        y: 380
+        x: 76
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1426,8 +1426,8 @@ TextureImporter:
       name: SpritesMario_63
       rect:
         serializedVersion: 2
-        x: 100
-        y: 380
+        x: 96
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1447,8 +1447,8 @@ TextureImporter:
       name: SpritesMario_64
       rect:
         serializedVersion: 2
-        x: 120
-        y: 380
+        x: 116
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1468,8 +1468,8 @@ TextureImporter:
       name: SpritesMario_65
       rect:
         serializedVersion: 2
-        x: 140
-        y: 380
+        x: 138
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1489,8 +1489,8 @@ TextureImporter:
       name: SpritesMario_66
       rect:
         serializedVersion: 2
-        x: 160
-        y: 380
+        x: 156
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1510,8 +1510,8 @@ TextureImporter:
       name: SpritesMario_67
       rect:
         serializedVersion: 2
-        x: 180
-        y: 380
+        x: 174
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1531,8 +1531,8 @@ TextureImporter:
       name: SpritesMario_68
       rect:
         serializedVersion: 2
-        x: 200
-        y: 380
+        x: 194
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1552,8 +1552,8 @@ TextureImporter:
       name: SpritesMario_69
       rect:
         serializedVersion: 2
-        x: 220
-        y: 380
+        x: 210
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1573,8 +1573,8 @@ TextureImporter:
       name: SpritesMario_70
       rect:
         serializedVersion: 2
-        x: 240
-        y: 380
+        x: 230
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1594,8 +1594,8 @@ TextureImporter:
       name: SpritesMario_71
       rect:
         serializedVersion: 2
-        x: 260
-        y: 380
+        x: 246
+        y: 372
         width: 16
         height: 16
       alignment: 0
@@ -1930,12 +1930,12 @@ TextureImporter:
       name: SpritesMario_87
       rect:
         serializedVersion: 2
-        x: 0
-        y: 364
+        x: 264
+        y: 388
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1951,12 +1951,12 @@ TextureImporter:
       name: SpritesMario_88
       rect:
         serializedVersion: 2
-        x: 20
-        y: 364
+        x: 264
+        y: 372
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1964,258 +1964,6 @@ TextureImporter:
       bones: []
       spriteID: 1172dc2675d0e5a46ace20e13b31aa92
       internalID: 107017575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_89
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45bff6f4ed0866e44becc0f61f659122
-      internalID: -1304929825
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_90
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ba14305e009ab6469ff609e4aa16c55
-      internalID: 117146497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_91
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b869ab9ecb4f83498db32c8c93c08bf
-      internalID: -2023350413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_92
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f36f76de924abab4bae1cc9fe6b65719
-      internalID: -683853365
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_93
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8947719e7373864f9a7d0648e5a4a14
-      internalID: 1162897827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_94
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7eaa91e4392792d498eeb6e452342b6b
-      internalID: 218806952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_95
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 099a41dc1f8e7d641b40d599a3d5d03e
-      internalID: -1092369066
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_96
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98d8069184d9b934192b86db68676948
-      internalID: 580902638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_97
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e6df829c1a67fb4f9aed906ef2f0c35
-      internalID: -909269692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_98
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c8aaa0a4c43edc4ab2f620c2a2dfe3b
-      internalID: -230750341
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_99
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae501d01e1e48e34dbd2fbd7fe8cf15d
-      internalID: -1306461742
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesMario_100
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 364
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2babee9645fa2c4dbc6d8790090587d
-      internalID: 1900451942
       vertices: []
       indices: 
       edges: []
@@ -2560,7 +2308,7 @@ TextureImporter:
       name: SpritesMario_117
       rect:
         serializedVersion: 2
-        x: 20
+        x: 18
         y: 348
         width: 16
         height: 16
@@ -2581,7 +2329,7 @@ TextureImporter:
       name: SpritesMario_118
       rect:
         serializedVersion: 2
-        x: 40
+        x: 36
         y: 348
         width: 16
         height: 16
@@ -2602,7 +2350,7 @@ TextureImporter:
       name: SpritesMario_119
       rect:
         serializedVersion: 2
-        x: 60
+        x: 56
         y: 348
         width: 16
         height: 16
@@ -2623,7 +2371,7 @@ TextureImporter:
       name: SpritesMario_120
       rect:
         serializedVersion: 2
-        x: 80
+        x: 74
         y: 348
         width: 16
         height: 16
@@ -3169,7 +2917,7 @@ TextureImporter:
       name: SpritesMario_146
       rect:
         serializedVersion: 2
-        x: 20
+        x: 18
         y: 332
         width: 16
         height: 16
@@ -3190,7 +2938,7 @@ TextureImporter:
       name: SpritesMario_147
       rect:
         serializedVersion: 2
-        x: 40
+        x: 36
         y: 332
         width: 16
         height: 16
@@ -3211,7 +2959,7 @@ TextureImporter:
       name: SpritesMario_148
       rect:
         serializedVersion: 2
-        x: 60
+        x: 56
         y: 332
         width: 16
         height: 16
@@ -3232,7 +2980,7 @@ TextureImporter:
       name: SpritesMario_149
       rect:
         serializedVersion: 2
-        x: 80
+        x: 74
         y: 332
         width: 16
         height: 16

@@ -10,5 +10,10 @@ public class DeathZone : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.GetComponent<Player>())
+        {
+            collision.gameObject.SetActive(false);
+        }
     }
 }

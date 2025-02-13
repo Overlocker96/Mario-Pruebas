@@ -275,7 +275,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -619983067
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2487745919285037871, guid: 8135d38151029d74cad8942cd28f180c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpHeight: 25
+  jumpHeight: 6
 --- !u!1001 &219379971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -535,6 +535,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1234182923720403588, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
+      propertyPath: coins
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4375365006717422408, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
       propertyPath: m_Name
       value: Block (1)
@@ -856,6 +860,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1234182923720403588, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
+      propertyPath: coins
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234182923720403588, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
+      propertyPath: mushroom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4375365006717422408, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
       propertyPath: m_Name
       value: Block (2)
@@ -3227,7 +3239,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1802689715
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3369,6 +3381,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1234182923720403588, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
+      propertyPath: coins
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234182923720403588, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
+      propertyPath: mushroom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4375365006717422408, guid: be2b46e560c12b2418bb95da5133eb05, type: 3}
       propertyPath: m_Name
       value: Block

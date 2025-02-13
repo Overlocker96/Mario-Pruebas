@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
         float duration = 0.1f;
 
         Vector2 startPosition = this.transform.position;
-        Vector2 endPosition = (Vector2)this.transform.position + (Vector2.up * 2);
+        Vector2 endPosition = (Vector2)this.transform.position + (Vector2.up * 3);
 
         // Movemos el bloque hacia arriba
         while (time < duration)

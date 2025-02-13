@@ -21,11 +21,6 @@ public class Goomba : MonoBehaviour
         deadLayer = LayerMask.NameToLayer("EnemyDead");
     }
 
-    private void Start()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         g_anim.SetBool("Moving", moving);

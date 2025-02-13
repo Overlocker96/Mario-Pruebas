@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
-    private float jumpHeight = 1f;
+    private float jumpHeight = 6f;
 
     Animator m_animator;
     SpriteRenderer m_sr;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private bool jumping;
     private bool maxHeightReached;
     private float positionOld;
+    private bool dead;
 
     void Start()
     {
@@ -27,9 +28,18 @@ public class Player : MonoBehaviour
         m_rb = gameObject.GetComponent<Rigidbody2D>();
         m_go = GameObject.Find("Mario");
         m_c2D = gameObject.GetComponent<BoxCollider2D>();
+        dead = false;
     }
 
     void FixedUpdate()
+    {
+        if (dead == false)
+        {
+            Movement();
+        }
+    }
+
+    private void Movement()
     {
         float horizontal = Input.GetAxis("Horizontal");
 
@@ -51,6 +61,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (dead == false)
+        {
+            Jumping();
+        }
+    }
+
+    private void Jumping()
+    {
         RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground"));
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground"));
 
@@ -58,24 +76,26 @@ public class Player : MonoBehaviour
         {
             maxHeightReached = false;
             positionOld = m_rb.position.y;
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight/4);
+            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight);
         }
-        else if (m_rb.position.y < positionOld + 3 && Input.GetKey(KeyCode.Space) == true && maxHeightReached == false)
+        else if (m_rb.position.y < positionOld + 3f && Input.GetKey(KeyCode.Space) == true && maxHeightReached == false)
         {
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight/2);
+            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight * 2);
         }
-        else if (m_rb.position.y > positionOld + 3 || Input.GetKeyDown(KeyCode.Space) == false)
-        {
-            m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
-            maxHeightReached = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) == true && m_rb.velocity.y <= 0)
+        else if (m_rb.position.y > positionOld + 3f && Input.GetKeyDown(KeyCode.Space) == true && maxHeightReached == true)
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && maxHeightReached)
+        {
+            m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
+        }
+        else if (m_rb.velocity.y <= 0)
+        {
             maxHeightReached = true;
         }
 
-        if (m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1)
+        if ((m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1) && dead == false)
         {
             jumping = true;
         }
@@ -85,5 +105,21 @@ public class Player : MonoBehaviour
         }
 
         m_animator.SetBool("Jumping", jumping);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Goomba")
+        {
+            m_animator.SetBool("Dead", dead);
+            dead = true;
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        m_rb.velocity = new Vector2(0f, jumpHeight * 4);
+        m_c2D.enabled = false;
     }
 }
