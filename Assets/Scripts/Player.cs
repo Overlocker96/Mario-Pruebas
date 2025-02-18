@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     private bool jumping;
     private bool maxHeightReached;
     private float positionOld;
-    private bool dead;
+    public bool dead;
+    public bool bigPowerUp;
 
     void Start()
     {
@@ -29,14 +30,7 @@ public class Player : MonoBehaviour
         m_go = GameObject.Find("Mario");
         m_c2D = gameObject.GetComponent<BoxCollider2D>();
         dead = false;
-    }
-
-    void FixedUpdate()
-    {
-        if (dead == false)
-        {
-            Movement();
-        }
+        bigPowerUp = false;
     }
 
     private void Movement()
@@ -47,12 +41,10 @@ public class Player : MonoBehaviour
 
         if (horizontal < 0)
         {
-            //m_sr.flipX = true;
             m_go.transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            //m_sr.flipX = false;
             m_go.transform.localScale = new Vector3(1, 1, 1);
         }
 
@@ -61,6 +53,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (dead == false)
+        {
+            Movement();
+        }
+
         if (dead == false)
         {
             Jumping();
@@ -109,16 +106,37 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Goomba")
+        if (collision.gameObject.GetComponent<Goomba>() && collision.collider.isTrigger == false)
         {
-            m_animator.SetBool("Dead", dead);
+            //Siempre cambiar el bool ANTES de aplicar el animator
             dead = true;
+            m_animator.SetBool("Dead", dead);
+            Death();
+        }
+
+        if (collision.gameObject.GetComponent<Mushroom>())
+        {
+            //Siempre cambiar el bool ANTES de aplicar el animator
+            bigPowerUp = true;
+            m_animator.SetBool("BigPowerUp", bigPowerUp);
+            collision.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "DeathZone" && dead == false)
+        {
+            //Siempre cambiar el bool ANTES de aplicar el animator
+            dead = true;
+            m_animator.SetBool("Dead", dead);
             Death();
         }
     }
 
     public void Death()
     {
+        m_rb.velocity = new Vector2(0f, 0f);
         m_rb.velocity = new Vector2(0f, jumpHeight * 4);
         m_c2D.enabled = false;
     }
