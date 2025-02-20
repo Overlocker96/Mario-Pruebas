@@ -66,8 +66,8 @@ public class Player : MonoBehaviour
 
     private void Jumping()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground"));
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_c2D.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground","Blocks"));
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground","Blocks"));
 
         if (Input.GetKeyDown(KeyCode.Space) && (hit1.collider || hit2.collider))
         {
@@ -138,6 +138,6 @@ public class Player : MonoBehaviour
     {
         m_rb.velocity = new Vector2(0f, 0f);
         m_rb.velocity = new Vector2(0f, jumpHeight * 4);
-        m_c2D.enabled = false;
+        this.gameObject.layer = LayerMask.NameToLayer("Dead");
     }
 }

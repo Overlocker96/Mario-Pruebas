@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
     private IEnumerator Bouncing()
     {
         float time = 0f;
-        float duration = 0.1f;
+        float duration = 0.2f;
 
         Vector2 startPosition = this.transform.position;
         Vector2 endPosition = (Vector2)this.transform.position + (Vector2.up * 3);

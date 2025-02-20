@@ -12,6 +12,15 @@ public class Block : BlockBase
     public bool mushroom;
     [SerializeField]
     private GameObject Mushroom;
+    [SerializeField]
+    public bool bigMario;
+    [SerializeField]
+    private GameObject Brick;
+
+    private void Update()
+    {
+        bigMario = GameObject.Find("Mario").GetComponent<Player>().bigPowerUp;
+    }
 
     public void Hit()
     {
@@ -26,6 +35,12 @@ public class Block : BlockBase
         {
             var mushSpawn = Instantiate(Mushroom, this.transform.position, Quaternion.identity);
             mushroom = false;
+        }
+
+        if (blockType == 1 && bigMario == true)
+        {
+            var brickSpawn = Instantiate(Brick, this.transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
 
         //Voy restando coins hasta 0

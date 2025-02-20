@@ -11,6 +11,8 @@ public class BlockBase : MonoBehaviour
     [SerializeField]
     private Sprite b_sp_blocked;
     [SerializeField]
+    private Sprite b_sp_brick;
+    [SerializeField]
     public int blockType;
 
     private bool isBlocked = false;
@@ -35,8 +37,13 @@ public class BlockBase : MonoBehaviour
         switch (blockType)
         {
             case 0:
-                 b_sr.sprite = b_sp_blocked;
+                b_sr.sprite = b_sp_blocked;
                 isBlocked = true;
+            break;
+
+            case 1:
+                b_sr.sprite = b_sp_brick;
+                isBlocked = false;
             break;
         }
     }

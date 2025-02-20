@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeleteZone : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DeleteZone : MonoBehaviour
 
         if (collision.gameObject.GetComponent<Player>())
         {
-            collision.gameObject.SetActive(false);
+            SceneManager.LoadScene("Main");
         }
     }
 }
