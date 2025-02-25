@@ -5,39 +5,140 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //Variables Movimiento NUEVAS
+    private float horizontal;
+    private float direction;
+    private bool jump;
     [SerializeField]
-    private float speed = 5f;
+    private float Aceleration;
     [SerializeField]
-    private float jumpHeight = 6f;
+    private float Deceleration;
+    [SerializeField]
+    private float maxVelocity;
+    [SerializeField]
+    private float jumpForce;
 
+    //Componente
     Animator m_animator;
     SpriteRenderer m_sr;
     Rigidbody2D m_rb;
-    GameObject m_go;
     Collider2D m_c2D;
+    GameObject m_go;
 
-    private bool jumping;
+    //Variables Movimiento ANTIGUAS
+    /*[SerializeField]
+    private float speed = 5f;
+    [SerializeField]
+    private float jumpHeight = 1f;
     private bool maxHeightReached;
-    private float positionOld;
+    private float positionOld;*/
+
+    //Variables Muerte y PowerUp
     public bool dead;
     public bool bigPowerUp;
+    private bool jumping;
 
     void Start()
     {
         m_animator = gameObject.GetComponent<Animator>();
         m_sr = gameObject.GetComponent<SpriteRenderer>();
         m_rb = gameObject.GetComponent<Rigidbody2D>();
-        m_go = GameObject.Find("Mario");
         m_c2D = gameObject.GetComponent<BoxCollider2D>();
+        m_go = this.gameObject;
         dead = false;
         bigPowerUp = false;
     }
 
+    private void Update()
+    {
+        this.horizontal = Input.GetAxisRaw("Horizontal");
+
+        //Código para el Salto
+        if (Input.GetKeyDown(KeyCode.Space) && this.jump)
+        {
+            this.m_rb.velocity = new Vector2(this.m_rb.velocity.x, 0f);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            this.jump = true;
+            this.m_rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (dead == false)
+        {
+            Movement();
+        }
+
+        /*if (dead == false)
+        {
+            Jumping();
+        }*/
+    }
+
+    private void LateUpdate()
+    {
+        m_animator.SetFloat("VelocityX", horizontal);
+        m_animator.SetBool("Jumping", jumping);
+        m_animator.SetBool("BigPowerUp", bigPowerUp);
+        m_animator.SetBool("Dead", dead);
+
+        if ((m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1) && dead == false)
+        {
+            jumping = true;
+        }
+        else
+        {
+            jumping = false;
+        }
+
+        //Animación Sliding => APLICAR!
+        /*if(Mathf.Sign(this.direction) != Mathf.Sign(this.m_rb.velocity.x))
+        {
+            this.m_animator.SetBool("Sliding", true);
+        }
+        else
+        {
+            this.m_animator.SetBool("Sliding", false);
+        }*/
+    }
+
     private void Movement()
     {
-        float horizontal = Input.GetAxis("Horizontal");
+        direction = horizontal;
 
-        m_animator.SetFloat("VelocityX", horizontal);
+        //Acelerando
+        var forceMario = new Vector2(this.direction, 0) * this.Aceleration;
+
+        //Frenando
+        if (direction == 0 && Mathf.Abs(this.m_rb.velocity.x) > 0.1)
+        {
+            forceMario = new Vector2(Mathf.Sign(this.m_rb.velocity.x) * this.Deceleration * -1, 0);
+        }
+
+        //Decelerando
+        if (direction != 0 && Mathf.Sign(direction) != Math.Sign(this.m_rb.velocity.x))
+        {
+            forceMario = new Vector2(Mathf.Sign(this.m_rb.velocity.x) * this.Deceleration * -1, 0);
+        }
+
+        //Parando
+        if (Mathf.Abs(this.m_rb.velocity.x) < 0.1f && direction == 0)
+        {
+            this.m_rb.velocity = new Vector2(0, this.m_rb.velocity.y);
+        }
+
+        //Aplicamos la fuerza
+        this.m_rb.AddForce(forceMario);
+
+        //Limitamos la velocidad máxima
+        if (Mathf.Abs(this.m_rb.velocity.x) > this.maxVelocity)
+        {
+            this.m_rb.velocity = new Vector2(Mathf.Clamp(this.m_rb.velocity.x,-this.maxVelocity, this.maxVelocity), this.m_rb.velocity.y);
+        }
 
         if (horizontal < 0)
         {
@@ -47,29 +148,14 @@ public class Player : MonoBehaviour
         {
             m_go.transform.localScale = new Vector3(1, 1, 1);
         }
-
-        m_rb.velocity = new Vector2(horizontal * speed, m_rb.velocity.y);
     }
 
-    void Update()
-    {
-        if (dead == false)
-        {
-            Movement();
-        }
-
-        if (dead == false)
-        {
-            Jumping();
-        }
-    }
-
-    private void Jumping()
+    /*private void Jumping()
     {
         RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground","Blocks"));
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground","Blocks"));
 
-        if (Input.GetKeyDown(KeyCode.Space) && (hit1.collider || hit2.collider))
+        if (jump && (hit1.collider || hit2.collider))
         {
             maxHeightReached = false;
             positionOld = m_rb.position.y;
@@ -100,25 +186,19 @@ public class Player : MonoBehaviour
         {
             jumping = false;
         }
-
-        m_animator.SetBool("Jumping", jumping);
-    }
+    }*/
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Goomba>() && collision.collider.isTrigger == false)
         {
-            //Siempre cambiar el bool ANTES de aplicar el animator
             dead = true;
-            m_animator.SetBool("Dead", dead);
             Death();
         }
 
         if (collision.gameObject.GetComponent<Mushroom>())
         {
-            //Siempre cambiar el bool ANTES de aplicar el animator
             bigPowerUp = true;
-            m_animator.SetBool("BigPowerUp", bigPowerUp);
             collision.gameObject.SetActive(false);
         }
     }
@@ -127,17 +207,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.name == "DeathZone" && dead == false)
         {
-            //Siempre cambiar el bool ANTES de aplicar el animator
             dead = true;
-            m_animator.SetBool("Dead", dead);
             Death();
         }
     }
 
     public void Death()
     {
-        m_rb.velocity = new Vector2(0f, 0f);
-        m_rb.velocity = new Vector2(0f, jumpHeight * 4);
+        this.m_rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
         this.gameObject.layer = LayerMask.NameToLayer("Dead");
     }
 }

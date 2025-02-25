@@ -15,11 +15,14 @@ public class Block : BlockBase
     [SerializeField]
     public bool bigMario;
     [SerializeField]
+    public bool dead;
+    [SerializeField]
     private GameObject Brick;
 
     private void Update()
     {
         bigMario = GameObject.Find("Mario").GetComponent<Player>().bigPowerUp;
+        dead = GameObject.Find("Mario").GetComponent<Player>().dead;
     }
 
     public void Hit()
@@ -37,7 +40,7 @@ public class Block : BlockBase
             mushroom = false;
         }
 
-        if (blockType == 1 && bigMario == true)
+        if (blockType == 1 && bigMario == true && dead == false)
         {
             var brickSpawn = Instantiate(Brick, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
