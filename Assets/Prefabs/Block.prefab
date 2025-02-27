@@ -200,5 +200,8 @@ MonoBehaviour:
   Coin: {fileID: 1720587305613093464, guid: 1fbf425ffe354e445a632f3d7784a28c, type: 3}
   mushroom: 0
   Mushroom: {fileID: 5687243880313846513, guid: 1ff1dd25f7223884ca5f58af87843922, type: 3}
+  lifemushroom: 0
+  LifeMushroom: {fileID: 4583855370872575048, guid: cb5e91abbb8a74a4a89321e19cfb7d66, type: 3}
   bigMario: 0
+  dead: 0
   Brick: {fileID: 4198723012068348481, guid: 8f731647184e62b4bb8a91475f9f2d52, type: 3}

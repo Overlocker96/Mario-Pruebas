@@ -14,7 +14,7 @@ public class DeleteZone : MonoBehaviour
 
         if (collision.gameObject.GetComponent<Player>())
         {
-            SceneManager.LoadScene("Main");
+            GameManager.Instance.GameOver();
         }
     }
 }

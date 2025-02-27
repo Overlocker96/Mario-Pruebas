@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float maxJumpHeight;
 
-    //Componente
+    //Componentes
     Animator m_animator;
     SpriteRenderer m_sr;
     Rigidbody2D m_rb;
@@ -131,14 +131,14 @@ public class Player : MonoBehaviour
             this.m_rb.velocity = new Vector2(Mathf.Clamp(this.m_rb.velocity.x,-this.maxVelocity, this.maxVelocity), this.m_rb.velocity.y);
         }
 
-        if (horizontal < 0)
+        /*if (m_rb.velocity.x < 0 && !jumping)
         {
-            m_go.transform.localScale = new Vector3(-1, 1, 1);
+            m_go.transform.localScale = new Vector2(-1, 1);
         }
         else
         {
-            m_go.transform.localScale = new Vector3(1, 1, 1);
-        }
+            m_go.transform.localScale = new Vector2(1, 1);
+        }*/
     }
 
     private void Jumping()
@@ -158,15 +158,21 @@ public class Player : MonoBehaviour
             this.m_rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
         }
 
-        /*if (jump && (hit1.collider || hit2.collider))
+        /*if (jumping != true && (hit1.collider || hit2.collider))
         {
             maxHeightReached = false;
             positionOld = m_rb.position.y;
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight);
+            m_rb.AddForce(Vector2.up * jumpForce);
+            //m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight);
         }
         else if (m_rb.position.y < positionOld + 3f && Input.GetKey(KeyCode.Space) == true && maxHeightReached == false)
         {
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight * 2);
+            m_rb.AddForce(Vector2.up * jumpForce * 2);
+            //m_rb.velocity = new Vector2(m_rb.velocity.x, jumpHeight * 2);
+        }
+        else if (m_rb.velocity.y <= 0)
+        {
+            maxHeightReached = true;
         }
         else if (m_rb.position.y > positionOld + 3f && Input.GetKeyDown(KeyCode.Space) == true && maxHeightReached == true)
         {
@@ -175,10 +181,6 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && maxHeightReached)
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, m_rb.velocity.y);
-        }
-        else if (m_rb.velocity.y <= 0)
-        {
-            maxHeightReached = true;
         }*/
     }
 
@@ -195,6 +197,12 @@ public class Player : MonoBehaviour
             bigPowerUp = true;
             collision.gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.GetComponent<LifeMushroom>())
+        {
+            GameManager.Instance.Live();
+            collision.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -208,6 +216,7 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
+        this.m_rb.velocity = Vector2.zero;
         this.m_rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
         this.gameObject.layer = LayerMask.NameToLayer("Dead");
     }

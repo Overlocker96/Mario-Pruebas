@@ -13,6 +13,10 @@ public class Block : BlockBase
     [SerializeField]
     private GameObject Mushroom;
     [SerializeField]
+    public bool lifemushroom;
+    [SerializeField]
+    private GameObject LifeMushroom;
+    [SerializeField]
     public bool bigMario;
     [SerializeField]
     public bool dead;
@@ -32,12 +36,19 @@ public class Block : BlockBase
         if (Coin != null && coins > 0 && !mushroom)
         {
             var coinSpawn = Instantiate(Coin, this.transform.position, Quaternion.identity);
+            GameManager.Instance.Coin();
         }
 
         if (Mushroom != null && mushroom && coins == 0)
         {
             var mushSpawn = Instantiate(Mushroom, this.transform.position, Quaternion.identity);
             mushroom = false;
+        }
+
+        if (Mushroom != null && lifemushroom && coins == 0)
+        {
+            var mushSpawn = Instantiate(LifeMushroom, this.transform.position, Quaternion.identity);
+            lifemushroom = false;
         }
 
         if (blockType == 1 && bigMario == true && dead == false)

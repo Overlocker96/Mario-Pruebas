@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoinsUI : MonoBehaviour
+public class LivesUI : MonoBehaviour
 {
     private Text text;
-
     void Start()
     {
         text = this.GetComponent<Text>();
@@ -14,6 +13,6 @@ public class CoinsUI : MonoBehaviour
 
     void Update()
     {
-        text.text = "x " + GameManager.Instance.Coins.ToString("00");
+        text.text = "x " + GameManager.Instance.Lives.ToString("00");
     }
 }
