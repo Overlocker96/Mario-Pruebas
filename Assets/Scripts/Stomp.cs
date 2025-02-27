@@ -20,7 +20,7 @@ public class Stomp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.name == "Mario")
+        if (collider.gameObject.name == "Mario")
         {
             collider.attachedRigidbody.velocity = new Vector2(0, 10);
             stomped = true;

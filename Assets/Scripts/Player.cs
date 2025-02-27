@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private float maxVelocity;
     [SerializeField]
     private float jumpForce;
+    [SerializeField]
+    private float maxJumpHeight;
 
     //Componente
     Animator m_animator;
@@ -47,22 +49,16 @@ public class Player : MonoBehaviour
         m_go = this.gameObject;
         dead = false;
         bigPowerUp = false;
+        jump = false;
     }
 
     private void Update()
     {
         this.horizontal = Input.GetAxisRaw("Horizontal");
 
-        //Código para el Salto
-        if (Input.GetKeyDown(KeyCode.Space) && this.jump)
+        if (dead == false)
         {
-            this.m_rb.velocity = new Vector2(this.m_rb.velocity.x, 0f);
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            this.jump = true;
-            this.m_rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+            Jumping();
         }
     }
 
@@ -72,11 +68,6 @@ public class Player : MonoBehaviour
         {
             Movement();
         }
-
-        /*if (dead == false)
-        {
-            Jumping();
-        }*/
     }
 
     private void LateUpdate()
@@ -150,12 +141,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*private void Jumping()
+    private void Jumping()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground","Blocks"));
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.6f, LayerMask.GetMask("Ground","Blocks"));
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.55f, LayerMask.GetMask("Ground", "Blocks"));
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.55f, LayerMask.GetMask("Ground", "Blocks"));
 
-        if (jump && (hit1.collider || hit2.collider))
+        //Código para el Salto
+        if (Input.GetKeyDown(KeyCode.Space) && this.jump)
+        {
+            this.m_rb.velocity = new Vector2(this.m_rb.velocity.x, 0f);
+        }
+
+        if (Input.GetKey(KeyCode.Space) && this.m_rb.position.y < maxJumpHeight && (hit1.collider || hit2.collider))
+        {
+            this.jump = true;
+            this.m_rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+        }
+
+        /*if (jump && (hit1.collider || hit2.collider))
         {
             maxHeightReached = false;
             positionOld = m_rb.position.y;
@@ -176,17 +179,8 @@ public class Player : MonoBehaviour
         else if (m_rb.velocity.y <= 0)
         {
             maxHeightReached = true;
-        }
-
-        if ((m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1) && dead == false)
-        {
-            jumping = true;
-        }
-        else
-        {
-            jumping = false;
-        }
-    }*/
+        }*/
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
