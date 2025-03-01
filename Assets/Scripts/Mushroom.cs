@@ -24,6 +24,7 @@ public class Mushroom : MonoBehaviour
             {
                 ChangeDirection();
             }
+
             mu_rb.velocity = new Vector2(velocity, mu_rb.velocity.y);
         }
     }

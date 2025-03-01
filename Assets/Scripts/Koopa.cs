@@ -13,6 +13,8 @@ public class Koopa : MonoBehaviour
     [SerializeField]
     private float velocity;
     [SerializeField]
+    private float velocityShell;
+    [SerializeField]
     private bool moving = false;
     [SerializeField]
     public bool stomped = false;
@@ -34,33 +36,39 @@ public class Koopa : MonoBehaviour
 
         if (moving && !stomped && !shell)
         {
-            velocity = -2;
             StopCoroutine(this.Shell());
-            k_rb.velocity = new Vector2(velocity, k_rb.velocity.y);
-            if (Mathf.Abs(k_rb.velocity.x) < 0.05f)
-            {
-                ChangeDirection();
-            }
+            Move();
         }
 
         if (!moving && stomped && !shell)
         {
-            k_rb.velocity = new Vector2(0, 0);
+            Stop();
             moving = false;
             StartCoroutine(this.Shell());
         }
 
-        if(shell && stomped)
+        if (shell && stomped)
         {
-            k_rb.velocity = new Vector2(velocity, k_rb.velocity.y);
-            if (Mathf.Abs(k_rb.velocity.x) < 0.05f)
-            {
-                ChangeDirection();
-            }
-            velocity = 8;
+            velocity = velocityShell;
+            Move();
             shellMoving = true;
         }
     }
+    
+    private void Move()
+    {
+        if (Mathf.Abs(k_rb.velocity.x) < 0.05f)
+        {
+            ChangeDirection();
+        }
+
+        k_rb.velocity = new Vector2(velocity, k_rb.velocity.y);
+    }
+    private void Stop()
+    {
+        k_rb.velocity = new Vector2(0, 0);
+    }
+
     private void ChangeDirection()
     {
         this.velocity *= -1;
@@ -89,14 +97,14 @@ public class Koopa : MonoBehaviour
 
             if (contactPoint.x > k_rb.position.x)
             {
-                m_rb.velocity = new Vector2(0, 20);
+                m_rb.velocity = new Vector2(0, 10);
                 shell = true;
-                this.velocity *= -1;
             }
             else
             {
-                m_rb.velocity = new Vector2(0, 20);
+                m_rb.velocity = new Vector2(0, 10);
                 shell = true;
+                this.velocity *= -1;
             }
         }
     }

@@ -26,7 +26,9 @@ public class Player : MonoBehaviour
     //Variables Muerte y PowerUp
     public bool dead;
     public bool bigPowerUp;
+    public bool flowerPowerUp;
     private bool jumping;
+    private bool hit;
 
     //Variables Movimiento ANTIGUAS
     /*[SerializeField]
@@ -69,6 +71,7 @@ public class Player : MonoBehaviour
         m_animator.SetFloat("VelocityX", horizontal);
         m_animator.SetBool("Jumping", jumping);
         m_animator.SetBool("BigPowerUp", bigPowerUp);
+        m_animator.SetBool("FlowerPowerUp", flowerPowerUp);
         m_animator.SetBool("Dead", dead);
 
         if ((m_rb.velocity.y > 0.1 || m_rb.velocity.y < -0.1) && dead == false)
@@ -128,13 +131,13 @@ public class Player : MonoBehaviour
 
     private void Jumping()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.55f, LayerMask.GetMask("Ground", "Blocks"));
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size / 2), Vector2.down, m_sr.bounds.size.y * 0.55f, LayerMask.GetMask("Ground", "Blocks"));
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position - (m_sr.bounds.size * 0.45f), Vector2.down, m_sr.bounds.size.y * 0.55f, LayerMask.GetMask("Ground", "Blocks"));
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + (m_sr.bounds.size * 0.45f), Vector2.down, m_sr.bounds.size.y * 0.55f, LayerMask.GetMask("Ground", "Blocks"));
 
         //Código para el Salto
         if (Input.GetKeyDown(KeyCode.Space) && this.jump)
         {
-            this.m_rb.velocity = new Vector2(this.m_rb.velocity.x, 0f);
+            this.m_rb.velocity = new Vector2(this.m_rb.velocity.x, this.m_rb.velocity.y);
         }
 
         if (Input.GetKey(KeyCode.Space) && !jumping && (hit1.collider || hit2.collider))
@@ -172,12 +175,25 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Goomba>() || (collision.gameObject.GetComponent<Koopa>() &&
-           ((collision.gameObject.GetComponent<Koopa>().stomped == false) || collision.gameObject.GetComponent<Koopa>().shellMoving == true)
-           && collision.collider.isTrigger == false))
+        if (collision.collider.isTrigger == false && dead == false)
         {
-            dead = true;
-            Death();
+            if (collision.gameObject.GetComponent<Goomba>() || (collision.gameObject.GetComponent<Koopa>() &&
+            (collision.gameObject.GetComponent<Koopa>().stomped == false || collision.gameObject.GetComponent<Koopa>().shellMoving == true)))
+            {
+                if (flowerPowerUp == true)
+                {
+                    flowerPowerUp = false;
+                }
+                else if (bigPowerUp == true)
+                {
+                    bigPowerUp = false;
+                }
+                else if (bigPowerUp == false)
+                {
+                    dead = true;
+                    Death();
+                }
+            }
         }
 
         if (collision.gameObject.GetComponent<Mushroom>())
@@ -191,6 +207,14 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.AddPoints();
             GameManager.Instance.Life();
+            collision.gameObject.SetActive(false);
+        }
+
+        if (collision.gameObject.GetComponent<Flower>())
+        {
+            GameManager.Instance.AddPoints();
+            bigPowerUp = false;
+            flowerPowerUp = true;
             collision.gameObject.SetActive(false);
         }
     }

@@ -9,7 +9,7 @@ public class Block : BlockBase
     [SerializeField]
     private GameObject Coin;
     [SerializeField]
-    public bool mushroom;
+    public bool powerUp;
     [SerializeField]
     private GameObject Mushroom;
     [SerializeField]
@@ -17,7 +17,11 @@ public class Block : BlockBase
     [SerializeField]
     private GameObject LifeMushroom;
     [SerializeField]
+    private GameObject Flower;
+    [SerializeField]
     public bool bigMario;
+    [SerializeField]
+    public bool flowerMario;
     [SerializeField]
     public bool dead;
     [SerializeField]
@@ -26,6 +30,7 @@ public class Block : BlockBase
     private void Update()
     {
         bigMario = GameObject.Find("Mario").GetComponent<Player>().bigPowerUp;
+        flowerMario = GameObject.Find("Mario").GetComponent<Player>().flowerPowerUp;
         dead = GameObject.Find("Mario").GetComponent<Player>().dead;
     }
 
@@ -33,29 +38,38 @@ public class Block : BlockBase
     {
         base.Hit();
 
-        if (Coin != null && coins > 0 && !mushroom)
+        if (!dead)
         {
-            GameManager.Instance.AddPoints();
-            var coinSpawn = Instantiate(Coin, this.transform.position, Quaternion.identity);
-            GameManager.Instance.Coin();
-        }
+            if (Coin != null && coins > 0 && !powerUp)
+            {
+                GameManager.Instance.AddPoints();
+                var coinSpawn = Instantiate(Coin, this.transform.position, Quaternion.identity);
+                GameManager.Instance.Coin();
+            }
 
-        if (Mushroom != null && mushroom && coins == 0)
-        {
-            var mushSpawn = Instantiate(Mushroom, this.transform.position, Quaternion.identity);
-            mushroom = false;
-        }
+            if (Mushroom != null && bigMario == false && powerUp && coins == 0)
+            {
+                var mushSpawn = Instantiate(Mushroom, this.transform.position, Quaternion.identity);
+                powerUp = false;
+            }
+            
+            if (Flower != null && bigMario == true && powerUp && coins == 0)
+            {
+                var flowerSpawn = Instantiate(Flower, this.transform.position, Quaternion.identity);
+                powerUp = false;
+            }
 
-        if (Mushroom != null && lifemushroom && coins == 0)
-        {
-            var mushSpawn = Instantiate(LifeMushroom, this.transform.position, Quaternion.identity);
-            lifemushroom = false;
-        }
+            if (LifeMushroom != null && lifemushroom && coins == 0)
+            {
+                var mushSpawn = Instantiate(LifeMushroom, this.transform.position, Quaternion.identity);
+                lifemushroom = false;
+            }
 
-        if (blockType == 1 && bigMario == true && dead == false)
-        {
-            var brickSpawn = Instantiate(Brick, this.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            if (blockType == 1 && (bigMario == true || flowerMario == true) && !powerUp)
+            {
+                var brickSpawn = Instantiate(Brick, this.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
         }
 
         //Voy restando coins hasta 0

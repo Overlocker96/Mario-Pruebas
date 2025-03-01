@@ -21,27 +21,37 @@ public class Goomba : MonoBehaviour
         deadLayer = LayerMask.NameToLayer("EnemyDead");
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         g_anim.SetBool("Moving", moving);
         stomped = g_anim.GetBool("Stomp");
 
         if (moving && !stomped)
         {
-            g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
-
-            if(Mathf.Abs(g_rb.velocity.x) < 0.05f)
-            {
-                ChangeDirection();
-            }
+            Move();
         }
         else if (stomped)
         {
-            g_rb.velocity = new Vector2(0, 0);
+            Stop();
             gameObject.layer = deadLayer;
             Destroy(this.gameObject, 0.5f);
         }
     }
+
+    private void Move()
+    {
+        if (Mathf.Abs(g_rb.velocity.x) < 0.05f)
+        {
+            ChangeDirection();
+        }
+
+        g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
+    }
+    private void Stop()
+    {
+        g_rb.velocity = new Vector2(0, 0);
+    }
+
     private void ChangeDirection()
     {
         this.velocity *= -1;
