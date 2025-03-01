@@ -318,10 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e198015607bab44e81ce1b3eb2318cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Chunk_UL: {fileID: 0}
-  Chunk_UR: {fileID: 0}
-  Chunk_DL: {fileID: 0}
-  Chunk_DR: {fileID: 0}
+  Chunk_UL: {fileID: 6515375402492356964}
+  Chunk_UR: {fileID: 4625619454436971899}
+  Chunk_DL: {fileID: 7547447637913825883}
+  Chunk_DR: {fileID: 3995305084714219777}
 --- !u!1 &5634568616152975294
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class MarioPunch : MonoBehaviour
 
         if (blockScript != null)
         {
-            Debug.Log("Bloque Interactuado");
             blockScript.Hit();
         }
     }

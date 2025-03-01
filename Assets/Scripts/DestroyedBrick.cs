@@ -15,11 +15,6 @@ public class DestroyedBrick : MonoBehaviour
 
     private void Start()
     {
-        Chunk_UL = GameObject.Find("Chunk_UL").GetComponent<Rigidbody2D>();
-        Chunk_UR = GameObject.Find("Chunk_UR").GetComponent<Rigidbody2D>();
-        Chunk_DL = GameObject.Find("Chunk_DL").GetComponent<Rigidbody2D>();
-        Chunk_DR = GameObject.Find("Chunk_DR").GetComponent<Rigidbody2D>();
-
         Chunk_UL.velocity = new Vector2(-2f, 2f);
         Chunk_UR.velocity = new Vector2(2f, 2f);
         Chunk_DL.velocity = new Vector2(-2f, -2f);

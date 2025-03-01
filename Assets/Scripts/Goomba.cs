@@ -28,17 +28,17 @@ public class Goomba : MonoBehaviour
 
         if (moving && !stomped)
         {
+            g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
             if (Mathf.Abs(g_rb.velocity.x) < 0.05f)
             {
                 ChangeDirection();
             }
-            g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
         }
         else if (stomped)
         {
             g_rb.velocity = new Vector2(0, 0);
             gameObject.layer = deadLayer;
-            Destroy(this.gameObject, 1f);
+            Destroy(this.gameObject, 0.5f);
         }
     }
     private void ChangeDirection()

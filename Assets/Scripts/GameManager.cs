@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         coins++;
     }
 
+    public void ResetCoins()
+    {
+        coins = 0;
+    }
+
     public void Live()
     {
         lives++;
@@ -65,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetTimer()
     {
-        timer = 0;
+        timer = 300;
     }
 
     public void LessLife()
@@ -77,8 +82,12 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "GameOver")
         {
-            ResetTimer();
             StartCoroutine(GameOverTime());
+        }
+
+        if (timer == 0)
+        {
+            GameOver();
         }
 
         if (lives == 0)
@@ -92,6 +101,7 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Main")
         {
             LessLife();
+            ResetCoins();
             SceneManager.LoadScene("GameOver");
         }
     }
@@ -101,6 +111,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         if (SceneManager.GetActiveScene().name == "GameOver")
         {
+            ResetTimer();
             SceneManager.LoadScene("Main");
         }
     }

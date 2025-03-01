@@ -17,15 +17,16 @@ public class Player : MonoBehaviour
     private float maxVelocity;
     [SerializeField]
     private float jumpForce;
-    [SerializeField]
-    private float maxJumpHeight;
 
     //Componentes
     Animator m_animator;
     SpriteRenderer m_sr;
     Rigidbody2D m_rb;
-    Collider2D m_c2D;
-    GameObject m_go;
+
+    //Variables Muerte y PowerUp
+    public bool dead;
+    public bool bigPowerUp;
+    private bool jumping;
 
     //Variables Movimiento ANTIGUAS
     /*[SerializeField]
@@ -35,18 +36,11 @@ public class Player : MonoBehaviour
     private bool maxHeightReached;
     private float positionOld;*/
 
-    //Variables Muerte y PowerUp
-    public bool dead;
-    public bool bigPowerUp;
-    private bool jumping;
-
     void Start()
     {
         m_animator = gameObject.GetComponent<Animator>();
         m_sr = gameObject.GetComponent<SpriteRenderer>();
         m_rb = gameObject.GetComponent<Rigidbody2D>();
-        m_c2D = gameObject.GetComponent<BoxCollider2D>();
-        m_go = this.gameObject;
         dead = false;
         bigPowerUp = false;
         jump = false;
@@ -130,15 +124,6 @@ public class Player : MonoBehaviour
         {
             this.m_rb.velocity = new Vector2(Mathf.Clamp(this.m_rb.velocity.x,-this.maxVelocity, this.maxVelocity), this.m_rb.velocity.y);
         }
-
-        /*if (m_rb.velocity.x < 0 && !jumping)
-        {
-            m_go.transform.localScale = new Vector2(-1, 1);
-        }
-        else
-        {
-            m_go.transform.localScale = new Vector2(1, 1);
-        }*/
     }
 
     private void Jumping()
@@ -152,12 +137,13 @@ public class Player : MonoBehaviour
             this.m_rb.velocity = new Vector2(this.m_rb.velocity.x, 0f);
         }
 
-        if (Input.GetKey(KeyCode.Space) && this.m_rb.position.y < maxJumpHeight && (hit1.collider || hit2.collider))
+        if (Input.GetKey(KeyCode.Space) && !jumping && (hit1.collider || hit2.collider))
         {
             this.jump = true;
             this.m_rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
         }
 
+        //Antiguo Código de Salto
         /*if (jumping != true && (hit1.collider || hit2.collider))
         {
             maxHeightReached = false;
@@ -186,7 +172,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Goomba>() && collision.collider.isTrigger == false)
+        if (collision.gameObject.GetComponent<Goomba>() || (collision.gameObject.GetComponent<Koopa>() && (collision.gameObject.GetComponent<Koopa>().stomped == false) && collision.collider.isTrigger == false))
         {
             dead = true;
             Death();

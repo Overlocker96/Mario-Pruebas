@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TimeUI : MonoBehaviour
 {
+    [SerializeField]
     private int time;
     private Text text;
     [SerializeField]
