@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     //Monedas iniciadas a 0
     private int coins = 0;
 
-    // Versiones Públicas de todas las variables necesarias para poder acceder desde fuera si tocar las privadas
+    // Versiones Públicas de todas las variables necesarias para poder acceder desde fuera sin tocar las privadas
     public int Timer { get { return timer; } }
 
     public int Lives { get { return lives; } }
@@ -53,36 +53,49 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    //Método Coin para Sumar Monedas
     public void Coin()
     {
         coins++;
     }
 
+    //Método ResetCoins para resetear Monedas a 0
     public void ResetCoins()
     {
         coins = 0;
     }
 
-    public void Live()
+    //Metodo Life para Sumar Vidas
+    public void Life()
     {
         lives++;
     }
 
+    //Método ResetTimer para resetear el Temporizador a 300
     public void ResetTimer()
     {
         timer = 300;
     }
 
+    //Método LessLife para Quitar Vidas
     public void LessLife()
     {
         lives--;
     }
 
+    //Método AddPoints para Dar Puntos
+    public void AddPoints()
+    {
+        points += 100;
+    }
+
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "GameOver")
+        if (SceneManager.GetActiveScene().name == "GameStart" && Input.GetKeyDown("space"))
         {
-            StartCoroutine(GameOverTime());
+            //StartCoroutine(GameOverTime());
+            ResetTimer();
+            SceneManager.LoadScene("Main");
         }
 
         if (timer == 0)
@@ -92,7 +105,7 @@ public class GameManager : MonoBehaviour
 
         if (lives == 0)
         {
-            SceneManager.LoadScene("EndGame");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -102,17 +115,7 @@ public class GameManager : MonoBehaviour
         {
             LessLife();
             ResetCoins();
-            SceneManager.LoadScene("GameOver");
-        }
-    }
-
-    IEnumerator GameOverTime()
-    {
-        yield return new WaitForSeconds(5f);
-        if (SceneManager.GetActiveScene().name == "GameOver")
-        {
-            ResetTimer();
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("GameStart");
         }
     }
 }

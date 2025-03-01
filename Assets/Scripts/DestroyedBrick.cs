@@ -15,6 +15,8 @@ public class DestroyedBrick : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.AddPoints();
+
         Chunk_UL.velocity = new Vector2(-2f, 2f);
         Chunk_UR.velocity = new Vector2(2f, 2f);
         Chunk_DL.velocity = new Vector2(-2f, -2f);

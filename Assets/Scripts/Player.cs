@@ -172,7 +172,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Goomba>() || (collision.gameObject.GetComponent<Koopa>() && (collision.gameObject.GetComponent<Koopa>().stomped == false) && collision.collider.isTrigger == false))
+        if (collision.gameObject.GetComponent<Goomba>() || (collision.gameObject.GetComponent<Koopa>() &&
+           ((collision.gameObject.GetComponent<Koopa>().stomped == false) || collision.gameObject.GetComponent<Koopa>().shellMoving == true)
+           && collision.collider.isTrigger == false))
         {
             dead = true;
             Death();
@@ -180,13 +182,15 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.GetComponent<Mushroom>())
         {
+            GameManager.Instance.AddPoints();
             bigPowerUp = true;
             collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.GetComponent<LifeMushroom>())
         {
-            GameManager.Instance.Live();
+            GameManager.Instance.AddPoints();
+            GameManager.Instance.Life();
             collision.gameObject.SetActive(false);
         }
     }

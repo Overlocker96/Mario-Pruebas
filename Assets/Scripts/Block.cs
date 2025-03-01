@@ -35,6 +35,7 @@ public class Block : BlockBase
 
         if (Coin != null && coins > 0 && !mushroom)
         {
+            GameManager.Instance.AddPoints();
             var coinSpawn = Instantiate(Coin, this.transform.position, Quaternion.identity);
             GameManager.Instance.Coin();
         }

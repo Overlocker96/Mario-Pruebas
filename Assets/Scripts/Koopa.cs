@@ -8,7 +8,7 @@ public class Koopa : MonoBehaviour
     Rigidbody2D k_rb;
     Rigidbody2D m_rb;
     Animator k_anim;
-    int deadLayer;
+    Vector2 contactPoint;
 
     [SerializeField]
     private float velocity;
@@ -16,12 +16,15 @@ public class Koopa : MonoBehaviour
     private bool moving = false;
     [SerializeField]
     public bool stomped = false;
+    [SerializeField]
+    public bool shell = false;
+    [SerializeField]
+    public bool shellMoving = false;
 
     private void Awake()
     {
         k_rb = gameObject.GetComponent<Rigidbody2D>();
         k_anim = gameObject.GetComponent<Animator>();
-        deadLayer = LayerMask.NameToLayer("EnemyDead");
     }
 
     private void FixedUpdate()
@@ -29,26 +32,33 @@ public class Koopa : MonoBehaviour
         k_anim.SetBool("Moving", moving);
         stomped = k_anim.GetBool("Stomp");
 
-        if (moving && !stomped)
+        if (moving && !stomped && !shell)
         {
+            velocity = -2;
             StopCoroutine(this.Shell());
-            Move();
+            k_rb.velocity = new Vector2(velocity, k_rb.velocity.y);
+            if (Mathf.Abs(k_rb.velocity.x) < 0.05f)
+            {
+                ChangeDirection();
+            }
         }
 
-        if (!moving && stomped)
+        if (!moving && stomped && !shell)
         {
-            Stop();
+            k_rb.velocity = new Vector2(0, 0);
             moving = false;
             StartCoroutine(this.Shell());
         }
-    }
 
-    private void Move()
-    {
-        k_rb.velocity = new Vector2(velocity, k_rb.velocity.y);
-        if (Mathf.Abs(k_rb.velocity.x) < 0.05f)
+        if(shell && stomped)
         {
-            ChangeDirection();
+            k_rb.velocity = new Vector2(velocity, k_rb.velocity.y);
+            if (Mathf.Abs(k_rb.velocity.x) < 0.05f)
+            {
+                ChangeDirection();
+            }
+            velocity = 8;
+            shellMoving = true;
         }
     }
     private void ChangeDirection()
@@ -56,15 +66,10 @@ public class Koopa : MonoBehaviour
         this.velocity *= -1;
     }
 
-    private void Stop()
-    {
-        k_rb.velocity = new Vector2(0, 0);
-    }
-
     private IEnumerator Shell()
     {
         float time = 0f;
-        float duration = 2f;
+        float duration = 5f;
 
         while (time < duration)
         {
@@ -76,14 +81,25 @@ public class Koopa : MonoBehaviour
         moving = true;
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Mario")
         {
-            Move();
-            k_rb.velocity = new Vector2(velocity * 2, k_rb.velocity.y);
+            contactPoint = collision.contacts[0].point;
+
+            if (contactPoint.x > k_rb.position.x)
+            {
+                m_rb.velocity = new Vector2(0, 20);
+                shell = true;
+                this.velocity *= -1;
+            }
+            else
+            {
+                m_rb.velocity = new Vector2(0, 20);
+                shell = true;
+            }
         }
-    }*/
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

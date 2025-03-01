@@ -29,7 +29,8 @@ public class Goomba : MonoBehaviour
         if (moving && !stomped)
         {
             g_rb.velocity = new Vector2(velocity, g_rb.velocity.y);
-            if (Mathf.Abs(g_rb.velocity.x) < 0.05f)
+
+            if(Mathf.Abs(g_rb.velocity.x) < 0.05f)
             {
                 ChangeDirection();
             }

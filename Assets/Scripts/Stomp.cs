@@ -22,9 +22,10 @@ public class Stomp : MonoBehaviour
     {
         if (collider.gameObject.name == "Mario")
         {
-            collider.attachedRigidbody.velocity = new Vector2(0, 10);
+            collider.attachedRigidbody.velocity = new Vector2(0, 20);
             stomped = true;
             GetComponent<Collider2D>().enabled = false;
+            GameManager.Instance.AddPoints();
         }
     }
 }

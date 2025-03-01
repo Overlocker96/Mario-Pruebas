@@ -7,7 +7,7 @@ public class DeleteZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Goomba>())
+        if (collision.gameObject.GetComponent<Goomba>() || collision.gameObject.GetComponent<Koopa>())
         {
             collision.gameObject.SetActive(false);
         }

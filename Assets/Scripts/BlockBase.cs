@@ -24,7 +24,6 @@ public class BlockBase : MonoBehaviour
 
     public void Hit()
     {
-        Debug.Log("Hit de BloqueBase");
         if (isBouncing == false && isBlocked != true)
         {
             StartCoroutine(this.Bouncing());
@@ -33,7 +32,6 @@ public class BlockBase : MonoBehaviour
 
     protected void SetSprite()
     {
-        Debug.Log("Test");
         switch (blockType)
         {
             case 0:
@@ -47,8 +45,6 @@ public class BlockBase : MonoBehaviour
             break;
         }
     }
-
-
     private IEnumerator Bouncing()
     {
         float time = 0f;
