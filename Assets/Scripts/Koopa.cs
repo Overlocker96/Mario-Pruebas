@@ -125,7 +125,7 @@ public class Koopa : MonoBehaviour
         if(collision.gameObject.GetComponent<Player>())
         {
             //Recogemos el primer punto de contacto
-            contactPoint = collision.contacts[0].point;
+            contactPoint = collision.GetContact(0).point;
 
             //Si es por la izquierda, movemos hacia la derecha
             if (contactPoint.x > k_rb.position.x)

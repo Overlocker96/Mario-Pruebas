@@ -50,6 +50,19 @@ public class Block : BlockBase
                 GameManager.Instance.Coin();//Llamamos al Método Coin del GameManager
             }
 
+            //Voy restando coins hasta 0
+            if (coins > 0)
+            {
+                coins--;
+            }
+
+            //Bloqueo el bloque
+            if (coins == 0)
+            {
+                this.GetComponent<Animator>().enabled = false;
+                this.SetSprite();
+            }
+
             if (Mushroom != null && bigMario == false && powerUp && coins == 0)//Existe el objeto Seta Normal, Mario NO es grande, tenemos powerUp pero ninguna Moneda en el Bloque
             {
                 var mushSpawn = Instantiate(Mushroom, this.transform.position, Quaternion.identity);//Instanciamos una Seta Normal en la posición del Bloque
@@ -68,24 +81,11 @@ public class Block : BlockBase
                 lifemushroom = false;//Ya no tenemos Seta de Vida
             }
 
-            if (blockType == 1 && (bigMario == true || flowerMario == true) && !powerUp)//Si el Tipo de Bloque es Ladrillo y somos Mario Grande o Mario Flor y el Bloque no tiene powerUp
+            if (blockType == 1 && (bigMario == true || flowerMario == true) && !powerUp && coins == 0)//Si el Tipo de Bloque es Ladrillo y somos Mario Grande o Mario Flor y el Bloque no tiene powerUp ni Monedas
             {
                 var brickSpawn = Instantiate(DestroyedBrick, this.transform.position, Quaternion.identity); ;//Instanciamos un Ladrillo Destruido en la posición del Bloque
                 Destroy(this.gameObject);//Destruimos el Bloque Original
             }
-        }
-
-        //Voy restando coins hasta 0
-        if (coins > 0)
-        {
-            coins--;
-        }
-
-        //Bloqueo el bloque
-        if (coins == 0)
-        {
-            this.GetComponent<Animator>().enabled = false;
-            this.SetSprite();
         }
     }
 }
