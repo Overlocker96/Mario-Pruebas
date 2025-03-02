@@ -39,10 +39,10 @@ public class Block : BlockBase
     //Método Hit cuando golpeams un bloque
     public void Hit()
     {
-        base.Hit();//Llamamos al método Hit de BlockBase de donde heredamos
-
-        if (!dead)//Si mario NO está muerto
+        if (dead == false)//Si mario NO está muerto
         {
+            base.Hit();//Llamamos al método Hit de BlockBase de donde heredamos
+
             if (Coin != null && coins > 0 && !powerUp)//Existe el objecto Moneda, las monedas son mayor que 0 y no tenemos ningún powerUp en el Bloque
             {
                 GameManager.Instance.AddPoints();//Añadimos puntos

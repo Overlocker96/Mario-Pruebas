@@ -49,6 +49,7 @@ public class Koopa : MonoBehaviour
         //Si entramos en modo caparazón moviendose, nos movemos
         if (shell && stomped)
         {
+            StopCoroutine(this.Shell());
             Move();
             shellMoving = true;
         }
@@ -121,7 +122,7 @@ public class Koopa : MonoBehaviour
     //Evento de Colision con Mario cuando estamos modo Caparazón Estático
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Mario")
+        if(collision.gameObject.GetComponent<Player>())
         {
             //Recogemos el primer punto de contacto
             contactPoint = collision.contacts[0].point;

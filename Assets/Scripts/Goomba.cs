@@ -15,6 +15,7 @@ public class Goomba : MonoBehaviour
     private float velocity;
     private bool moving = false;
     private bool stomped = false;
+    private bool dead = false;
 
     //Recogemos las Propiedades del Goomba
     private void Awake()
@@ -44,6 +45,7 @@ public class Goomba : MonoBehaviour
     private void LateUpdate()
     {
         g_anim.SetBool("Moving", moving);
+        g_anim.SetBool("Dead", dead);
         stomped = g_anim.GetBool("Stomp");
     }
 
@@ -80,5 +82,27 @@ public class Goomba : MonoBehaviour
         {
             moving = true;
         }
+    }
+
+    //Evento de Colision con Caparazón de Koopas (Tiene Bugs pero funciona con errores)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject != null && dead == false)//Si NO está muerto
+        {
+            if (collision.gameObject.GetComponent<Koopa>() &&//Si colisionamos con un Koopa
+                collision.gameObject.GetComponent<Koopa>().shellMoving == true)//Y esta en modo Caparazón Moviendose
+            {
+                Death();
+                dead = true;
+            }
+        }
+    }
+
+    //Evento Muerte (Depende del evento anterior)
+    private void Death()
+    {
+        this.g_rb.velocity = Vector2.zero;//La velocidad es 0 y nos paramos
+        this.g_rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);//Aplicamos una fuerza hacia arriba
+        this.gameObject.layer = LayerMask.NameToLayer("Dead");//Aplicamos la Layer "Muerto" al Goomba
     }
 }

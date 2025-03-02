@@ -99,12 +99,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Main");//Cambiamos a la Escena "Main"
         }
 
-        if (timer == 0)//Si el Timer llega a 0
+        if (SceneManager.GetActiveScene().name == "Main" && timer == 0)//Si el Timer llega a 0
         {
             GameOver();//Llamamos al método GameOver
         }
 
-        if (lives == 0)//Si las vidas llegan a 0
+        if (SceneManager.GetActiveScene().name == "Main" && lives == 0)//Si las vidas llegan a 0
         {
             SceneManager.LoadScene("GameOver");//Cambiamos a la Escena "GameOver"
         }
@@ -119,5 +119,11 @@ public class GameManager : MonoBehaviour
             ResetCoins();//Llamamos al método ResetCoins
             SceneManager.LoadScene("GameStart");//Cambiamos a la Escena "GameStart"
         }
+    }
+
+    //Método GameWin
+    public void GameWin()
+    {
+        SceneManager.LoadScene("GameWin");//Cambiamos a la Escena "GameWin"
     }
 }
