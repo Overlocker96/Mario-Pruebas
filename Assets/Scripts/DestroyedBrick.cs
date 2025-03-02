@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyedBrick : MonoBehaviour
 {
+    //Propiedades del Bloque Destruido (Cada componente RigidBody2D de los trozos)
     [SerializeField]
     private Rigidbody2D Chunk_UL;
     [SerializeField]
@@ -15,13 +16,13 @@ public class DestroyedBrick : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.AddPoints();
+        GameManager.Instance.AddPoints();//Añadimos puntos
 
-        Chunk_UL.velocity = new Vector2(-2f, 2f);
-        Chunk_UR.velocity = new Vector2(2f, 2f);
-        Chunk_DL.velocity = new Vector2(-2f, -2f);
-        Chunk_DR.velocity = new Vector2(2f, -2f);
+        Chunk_UL.velocity = new Vector2(-2f, 2f);//Aplicamos velocidad Arriba a la Izq
+        Chunk_UR.velocity = new Vector2(2f, 2f);//Aplicamos velocidad Arriba a la Dch
+        Chunk_DL.velocity = new Vector2(-2f, -2f);//Aplicamos velocidad Abajo a la Izq
+        Chunk_DR.velocity = new Vector2(2f, -2f);//Aplicamos velocidad Abajo a la Dch
 
-        Destroy(this.gameObject, 1);
+        Destroy(this.gameObject, 1);//Destruimos el GameObject y sus hijos en 1 segundo
     }
 }

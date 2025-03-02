@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     //Instanciamos el GameManager
     public static GameManager instance;
 
+    //Nos aseguramos que SIEMPRE tengamos un GameManager en la Escena
     public static GameManager Instance
     {
         get
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
             if (instance == null)
             {
                 GameObject gameObject = new GameObject();
-                gameObject.name = "GameManagerSingleton";
+                gameObject.name = "GameManager";
                 instance = gameObject.AddComponent<GameManager>();
 
                 DontDestroyOnLoad(Instance.gameObject);
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     //Variables que vamos a usar
 
     //Tiempo iniciado a 300
-    private int timer = 300;
+    private float timer = 300f;
 
     //Vidas iniciadas a 3
     private int lives = 3;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     private int coins = 0;
 
     // Versiones Públicas de todas las variables necesarias para poder acceder desde fuera sin tocar las privadas
-    public int Timer { get { return timer; } }
+    public float Timer { get { return timer; } }
 
     public int Lives { get { return lives; } }
 
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public int Coins { get { return coins; } }
 
+    //GameManager nunca se destruye
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -91,31 +93,31 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "GameStart" && Input.GetKeyDown("space"))
+        if (SceneManager.GetActiveScene().name == "GameStart" && Input.GetKeyDown("space"))//Si estamos en la Escena "GameStart" y pulsamos "Space"
         {
-            //StartCoroutine(GameOverTime());
-            ResetTimer();
-            SceneManager.LoadScene("Main");
+            ResetTimer();//Llamamos al método ResetTimer
+            SceneManager.LoadScene("Main");//Cambiamos a la Escena "Main"
         }
 
-        if (timer == 0)
+        if (timer == 0)//Si el Timer llega a 0
         {
-            GameOver();
+            GameOver();//Llamamos al método GameOver
         }
 
-        if (lives == 0)
+        if (lives == 0)//Si las vidas llegan a 0
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");//Cambiamos a la Escena "GameOver"
         }
     }
 
+    //Método GameOver
     public void GameOver()
     {
-        if(SceneManager.GetActiveScene().name == "Main")
+        if(SceneManager.GetActiveScene().name == "Main")//Si la Escena es "Main"
         {
-            LessLife();
-            ResetCoins();
-            SceneManager.LoadScene("GameStart");
+            LessLife();//Llamamos al método LessLife
+            ResetCoins();//Llamamos al método ResetCoins
+            SceneManager.LoadScene("GameStart");//Cambiamos a la Escena "GameStart"
         }
     }
 }

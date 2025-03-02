@@ -204,5 +204,6 @@ MonoBehaviour:
   LifeMushroom: {fileID: 4583855370872575048, guid: cb5e91abbb8a74a4a89321e19cfb7d66, type: 3}
   Flower: {fileID: 1532714479313760519, guid: e28713f914cb95247b5aa0355ea577fb, type: 3}
   bigMario: 0
+  flowerMario: 0
   dead: 0
-  Brick: {fileID: 4198723012068348481, guid: 8f731647184e62b4bb8a91475f9f2d52, type: 3}
+  DestroyedBrick: {fileID: 4198723012068348481, guid: 8f731647184e62b4bb8a91475f9f2d52, type: 3}

@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1109 &-8964669881865767204
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: FlowerPowerUp
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: BigPowerUp
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1017580112194527287}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1101 &-8898181228508401592
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -28,15 +8,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: 0.1
   - m_ConditionMode: 1
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4313342791753873171}
   m_Solo: 0
@@ -51,7 +31,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1109 &-8838343630402062455
+--- !u!1109 &-7136046454611606261
 AnimatorTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,11 +39,14 @@ AnimatorTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: BigPowerUp
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 6279087230462214276}
+  m_DstStateMachine: {fileID: 5523660856199737172}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -103,15 +86,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: -0.1
   - m_ConditionMode: 1
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4988089358060471868}
   m_Solo: 0
@@ -126,6 +109,26 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1109 &-6829475874886237926
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: BigPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: -6711889978356709552}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1107 &-6711889978356709552
 AnimatorStateMachine:
   serializedVersion: 6
@@ -152,8 +155,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_AnyStatePosition: {x: 50, y: 50, z: 0}
+  m_EntryPosition: {x: 50, y: 160, z: 0}
   m_ExitPosition: {x: 660, y: 50, z: 0}
   m_ParentStateMachinePosition: {x: 30, y: 270, z: 0}
   m_DefaultState: {fileID: 653290822496723833}
@@ -192,14 +195,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Jumping
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6359045459696506043}
@@ -223,14 +226,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Jumping
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 981460394251057078}
@@ -281,15 +284,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: 0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6346828723514644545}
   m_Solo: 0
@@ -313,13 +316,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Jumping
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6279087230462214276}
@@ -343,15 +346,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: 0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6279087230462214276}
   m_Solo: 0
@@ -401,15 +404,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: 0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 653290822496723833}
   m_Solo: 0
@@ -432,15 +435,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: -0.1
   - m_ConditionMode: 1
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1017580112194527287}
   m_Solo: 0
@@ -455,26 +458,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1109 &-3469961639636964880
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: FlowerPowerUp
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: BigPowerUp
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 653290822496723833}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1101 &-3130632700279612790
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -483,15 +466,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: -0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6279087230462214276}
   m_Solo: 0
@@ -537,20 +520,40 @@ AnimatorStateMachine:
   m_StateMachineTransitions:
   - first: {fileID: 1119883098389973436}
     second:
-    - {fileID: 4576431634920055929}
+    - {fileID: -2500720511535686004}
   - first: {fileID: 5523660856199737172}
     second:
-    - {fileID: -8838343630402062455}
-    - {fileID: -3469961639636964880}
+    - {fileID: -6829475874886237926}
+    - {fileID: -1390179832516228411}
   - first: {fileID: -6711889978356709552}
     second:
-    - {fileID: -8964669881865767204}
+    - {fileID: -7136046454611606261}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 320, y: 20, z: 0}
   m_EntryPosition: {x: 20, y: 20, z: 0}
   m_ExitPosition: {x: 620, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 6279087230462214276}
+--- !u!1109 &-2500720511535686004
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: BigPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 5523660856199737172}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1101 &-1891138736975218263
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -559,15 +562,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: -0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 653290822496723833}
   m_Solo: 0
@@ -609,6 +612,26 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1109 &-1390179832516228411
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: BigPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 1119883098389973436}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1101 &-1310265252251213539
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -642,15 +665,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: -0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 112425439353255100}
   m_Solo: 0
@@ -673,14 +696,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Jumping
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1017580112194527287}
@@ -812,13 +835,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Jumping
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4112268989871579033}
@@ -915,8 +938,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_AnyStatePosition: {x: 50, y: 80, z: 0}
+  m_EntryPosition: {x: 50, y: 190, z: 0}
   m_ExitPosition: {x: 660, y: 80, z: 0}
   m_ParentStateMachinePosition: {x: 30, y: 300, z: 0}
   m_DefaultState: {fileID: 6279087230462214276}
@@ -928,15 +951,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: 0.1
   - m_ConditionMode: 1
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1017580112194527287}
   m_Solo: 0
@@ -978,26 +1001,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1109 &4576431634920055929
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: BigPowerUp
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: FlowerPowerUp
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1017580112194527287}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1107 &5523660856199737172
 AnimatorStateMachine:
   serializedVersion: 6
@@ -1024,10 +1027,10 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_AnyStatePosition: {x: 50, y: 50, z: 0}
+  m_EntryPosition: {x: 50, y: 160, z: 0}
   m_ExitPosition: {x: 660, y: 50, z: 0}
-  m_ParentStateMachinePosition: {x: 640, y: 270, z: 0}
+  m_ParentStateMachinePosition: {x: 30, y: 270, z: 0}
   m_DefaultState: {fileID: 1017580112194527287}
 --- !u!1102 &6279087230462214276
 AnimatorState:
@@ -1092,15 +1095,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: 0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1583619578986056392}
   m_Solo: 0
@@ -1150,13 +1153,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Jumping
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: FlowerPowerUp
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 653290822496723833}
@@ -1205,15 +1208,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VelocityX
-    m_EventTreshold: -0.1
   - m_ConditionMode: 2
     m_ConditionEvent: BigPowerUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: FlowerPowerUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityX
+    m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7049551561230820508}
   m_Solo: 0

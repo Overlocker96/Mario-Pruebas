@@ -5,26 +5,32 @@ using UnityEngine.UI;
 
 public class TimeUI : MonoBehaviour
 {
+    //Variables del Temporizador
     [SerializeField]
-    private int time;
+    private float time;
     private Text text;
     [SerializeField]
     private int timeMult = 2;
 
-    void Start()
+    //Recogemos las propiedades del Temporizador
+    private void Start()
     {
         text = this.GetComponent<Text>();
     }
 
+    private void Awake()
+    {
+        time = GameManager.Instance.Timer;//Recogemos Timer del GameManager
+    }
+
     void Update()
     {
-        time = GameManager.Instance.Timer;
-        time -= (int)Time.deltaTime * timeMult;
-        text.text = time.ToString("000");
+        time -= Time.deltaTime * timeMult;// * timeMult;//Hacemos que cuente hacia atras a la velocidad de timeMult
+        text.text = time.ToString("000");//Formateamos el texto para mostrar 3 digitos en la UI
 
-        if(time < 100)
+        if(time < 100)//Cuando el temporizador sea menor de 100
         {
-            timeMult = 4;
+            timeMult = 4;//El tiempo pasa el doble de rápido que por defecto
         }
     }
 }
